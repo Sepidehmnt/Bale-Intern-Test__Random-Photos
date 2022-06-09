@@ -1,0 +1,67 @@
+.items {
+  height: 550px;
+  /* add other styles*/
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* add other classes */
+
+/* no need to touch rest of file*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  background-color: #d9d9d9;
+  background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 600px;
+  max-height: 90vh;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.items::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+.items::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+
+.items::-webkit-scrollbar-thumb:vertical {
+  min-height: 60px;
+}
+
+.items::-webkit-scrollbar-thumb:horizontal {
+  min-width: 60px;
+}
+
+button {
+  background-color: #faebd7;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+}

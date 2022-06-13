@@ -1,33 +1,28 @@
 .items {
   height: 550px;
-  /* add other styles*/
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* add other classes */
-
 .item {
   position: relative;
   margin-bottom: 4px;
+  height: 200px;
 }
-.picFilter {
+.pictureFilter {
   position: absolute;
   top: 0;
   background: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 200px;
 }
-.myImg {
-  height: 200px;
-}
-.myP {
+
+.p {
   position: absolute;
   left: 8px;
   bottom: 8px;
   color: #faebd7;
 }
-/* no need to touch rest of file*/
 
 * {
   margin: 0;

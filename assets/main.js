@@ -1,32 +1,51 @@
-const range = 50;
-function randomPhotos() {
+let range = 50;
+
+//random photos in range
+randomPhoto();
+function randomPhoto() {
   for (let i = 1; i <= range; i++) {
-    let items = document.getElementsByClassName("items")[0];
-    let item = document.createElement("div");
-    let imgElement = document.createElement("img");
-    let colorOverlay = document.createElement("div");
-    let text = document.createElement("p");
-    let innerTxt = document.createTextNode(`picture ${i}`);
-
-    item.style.position = "relative";
-    colorOverlay.style.width = "100" + "%";
-    colorOverlay.style.height = "200" + "px";
-    colorOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-    colorOverlay.style.position = "absolute";
-    colorOverlay.style.top = "0";
-
-    text.style.position = "absolute";
-    text.style.bottom = "8" + "px";
-    text.style.left = "8" + "px";
-    text.style.color = "#faebd7";
-
-    text.appendChild(innerTxt);
-    item.appendChild(imgElement);
-    item.appendChild(colorOverlay);
-    item.appendChild(text);
-
-    imgElement.setAttribute("src", `https://picsum.photos/id/${i}/400/200`);
-    items.appendChild(item);
+    createItem(i);
   }
 }
-randomPhotos();
+
+//create item in container
+function createItem(photoNum) {
+  let items = document.getElementsByClassName("items")[0];
+  let item = document.createElement("div");
+  item.className = "item";
+  item.addEventListener("contextmenu", deleteMyPic);
+
+  let imgContainer = document.createElement("div");
+  imgContainer.className = "myImg";
+  imgContainer.style.backgroundImage = `url(https://picsum.photos/id/${photoNum}/400/200)`;
+
+  let picFilter = document.createElement("div");
+  picFilter.className = "picFilter";
+
+  let p = createElement("p", `picture ${photoNum}`);
+  p.className = "myP";
+
+  item.appendChild(imgContainer);
+  item.appendChild(picFilter);
+  item.appendChild(p);
+  items.appendChild(item);
+}
+
+//create new element with text in it
+function createElement(tag, text) {
+  let element = document.createElement(tag);
+  element.textContent = text;
+  return element;
+}
+
+//delete a picture when you right click on it
+function deleteMyPic(e) {
+  e.preventDefault();
+  document.querySelector(".items").removeChild(this);
+}
+
+//add a picture when click on button
+function myAddPic() {
+  range++;
+  createItem(range);
+}

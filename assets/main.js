@@ -1,51 +1,54 @@
-let range = 50;
+let numberCount = 50;
+const items = document.querySelector(".items");
 
 //random photos in range
 randomPhoto();
 function randomPhoto() {
-  for (let i = 1; i <= range; i++) {
+  for (let i = 1; i <= numberCount; i++) {
     createItem(i);
   }
 }
 
 //create item in container
 function createItem(photoNum) {
-  let items = document.getElementsByClassName("items")[0];
-  let item = document.createElement("div");
+  const item = document.createElement("div");
   item.className = "item";
-  item.addEventListener("contextmenu", deleteMyPic);
+  item.addEventListener("contextmenu", deletePicture);
 
-  let imgContainer = document.createElement("div");
-  imgContainer.className = "myImg";
-  imgContainer.style.backgroundImage = `url(https://picsum.photos/id/${photoNum}/400/200)`;
+  const imgContainer = document.createElement("img");
 
-  let picFilter = document.createElement("div");
-  picFilter.className = "picFilter";
+  //Use loading = "lazy" for lazy loading images and something like that, when you don't want to load in first loadin page
+  imgContainer.loading = "lazy";
+  imgContainer.src = `https://picsum.photos/id/${photoNum}/400/200`;
 
-  let p = createElement("p", `picture ${photoNum}`);
-  p.className = "myP";
+  const pictureFilter = document.createElement("div");
+  pictureFilter.className = "pictureFilter";
+
+  const p = createElement("p", `picture ${photoNum}`);
+  p.className = "p";
 
   item.appendChild(imgContainer);
-  item.appendChild(picFilter);
+  item.appendChild(pictureFilter);
   item.appendChild(p);
   items.appendChild(item);
 }
 
 //create new element with text in it
 function createElement(tag, text) {
-  let element = document.createElement(tag);
+  const element = document.createElement(tag);
   element.textContent = text;
   return element;
 }
 
-//delete a picture when you right click on it
-function deleteMyPic(e) {
+//delete a picture when you do right click on it
+function deletePicture(e) {
   e.preventDefault();
-  document.querySelector(".items").removeChild(this);
+  items.removeChild(this);
 }
 
 //add a picture when click on button
-function myAddPic() {
-  range++;
-  createItem(range);
+document.querySelector("button").addEventListener("click", addPicture);
+function addPicture() {
+  numberCount++;
+  createItem(numberCount);
 }
